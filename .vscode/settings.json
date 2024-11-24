@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "RPS_Checkers.sln"
+    "dotnet.defaultSolution": "RPS_Chess.sln"
 }
