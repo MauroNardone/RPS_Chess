@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private Tile _tilePrefab; // Assign your Tile prefab here
-    [SerializeField] private int _gridWidth = 8;
-    [SerializeField] private int _gridHeight = 8;
+    [SerializeField] private Tile _tilePrefab;
+    [SerializeField] private int _rows = 8;
+    [SerializeField] private int _columns = 8;
+    // private Vector3 GlobalGridPosition = new Vector3(11, 11, 0);
 
     private void Start()
     {
+        // GetComponent<Transform>().position = GlobalGridPosition;
         generateGrid();
     }
 
     private void generateGrid()
     {
-        for (int x = 0; x < _gridWidth; x++)
+        for (int column = 1; column <= _columns; column++)
         {
-            for (int y = 0; y < _gridHeight; y++)
+            for (int row = 1; row <= _rows; row++)
             {
-                Vector2 position = new Vector2(x, y);
+                Vector2 position = new Vector2(column, row);
                 Tile newTile = Instantiate(_tilePrefab, position, Quaternion.identity);
-                newTile.initialize(new Vector2Int(x, y));
+                newTile.initialize(new Vector2Int(column, row));
             }
         }
     }
