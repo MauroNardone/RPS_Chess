@@ -22,16 +22,16 @@ public class Tile : MonoBehaviour
         TileSize = DefaultTileSize;
     }
 
-    public ChessPosition GetChessPosition(Vector2Int gridPosition)
+    public ChessPosition GetChessPosition()
     {
-        return ChessPosition.FromVector(gridPosition);
+        return ChessPosition.FromVector(GridPosition);
     }
 
     private void OnMouseDown()
     {
         //OnMouseDownIsHappening = true;
         Debug.Log($"Tile clicked at position: {GridPosition}");
-        Debug.Log($"Chess position at: {GetChessPosition(GridPosition)}");
+        Debug.Log($"Chess position at: {GetChessPosition()}");
         TileSize = DefaultTileSize;
     }
 
