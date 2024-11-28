@@ -1,30 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private int _rows = 8;
-    [SerializeField] private int _columns = 8;
-    // private Vector3 GlobalGridPosition = new Vector3(11, 11, 0);
+    [SerializeField] private Tile _tile;
+    private List<Tile> _tiles = new List<Tile> { };
+    [SerializeField] private RectTransform _canvas;
+    [SerializeField] private int _rows;
+    [SerializeField] private int _columns;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        // GetComponent<Transform>().position = GlobalGridPosition;
-        generateGrid();
-    }
-
-    private void generateGrid()
-    {
-        for (int column = 1; column <= _columns; column++)
+        //generateGrid(_tile, _canvas);
+        for (int col = 0; col < _columns; col++)
         {
-            for (int row = 1; row <= _rows; row++)
+            for (int row = 0; row < _rows; row++)
             {
-                Vector2 position = new Vector2(column, row);
-                Tile newTile = Instantiate(_tilePrefab, position, Quaternion.identity);
-                newTile.initialize(new Vector2Int(column, row));
+                _tiles.Add(generateTile(_tile, _canvas, col, row));
             }
         }
+    }
+
+    private Tile generateTile(Tile tile, RectTransform canvas, int column, int row)
+    {
+        Tile newTile = Instantiate(tile, canvas);
+        RectTransform tilePosition = newTile.GetComponent<RectTransform>();
+        tilePosition.anchoredPosition = new(column * 100, row * 100);
+        return newTile;
     }
 }
