@@ -496,6 +496,7 @@ MonoBehaviour:
   _canvas: {fileID: 1599427104}
   _rows: 8
   _columns: 8
+  _offset: 262.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
