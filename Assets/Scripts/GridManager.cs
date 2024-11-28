@@ -10,6 +10,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private RectTransform _canvas;
     [SerializeField] private int _rows;
     [SerializeField] private int _columns;
+    [SerializeField] private float _offset = 265;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class GridManager : MonoBehaviour
     {
         Tile newTile = Instantiate(tile, canvas);
         RectTransform tilePosition = newTile.GetComponent<RectTransform>();
-        tilePosition.anchoredPosition = new(column * 100, row * 100);
+        tilePosition.anchoredPosition = new((column * 75) - _offset, (row * 75) - _offset);
         return newTile;
     }
 }
