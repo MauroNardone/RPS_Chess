@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     void Awake()
     {
         _button = GetComponent<Button>();
+        _button.onClick.AddListener(OnTileClicked);
         ColorBlock colorBlock = _button.colors;
     }
 
@@ -23,5 +24,10 @@ public class Tile : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnTileClicked()
+    {
+        Debug.Log("Pressed");
     }
 }
