@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GridManager : MonoBehaviour
 {
@@ -15,11 +16,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        _board = new GameObject("Board");
-        _board.transform.SetParent(_canvas);
-        RectTransform boardTransform = _board.AddComponent<RectTransform>();
-        boardTransform.anchoredPosition = new(0, 0);
-        boardTransform.localScale = new(1, 1, 1);
+        RectTransform boardTransform = GenerateParent.canvasParent(_board, "Board", _canvas);
         for (int col = 0; col < _columns; col++)
         {
             for (int row = 0; row < _rows; row++)
