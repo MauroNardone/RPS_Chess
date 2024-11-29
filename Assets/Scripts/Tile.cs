@@ -5,37 +5,33 @@ using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
-    private Button _button;
-    private Vector2 _position;
-    private string _stringPosition;
+    private string _gridPosition; // Store the grid position, e.g., "C2"
+    private Button _button;  // Reference to the Button component
 
     void Awake()
     {
+        // Get the Button component and set up the click listener
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(OnTileClicked);
-        ColorBlock colorBlock = _button.colors;
+        if (_button != null)
+        {
+            _button.onClick.AddListener(OnTileClicked);
+        }
+        else
+        {
+            Debug.LogError("Button component is missing on this Tile!");
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    // Initialize the tile with its grid position
+    public void Initialize(string gridPosition)
     {
-
+        _gridPosition = gridPosition;
+        gameObject.name = $"Tile {_gridPosition}";  // Optionally set the GameObject name
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void getGridPosition(int columns, int rows)
-    {
-        _position = new(columns, rows);
-        _stringPosition = new($"{_position}");
-    }
-
+    // Called when the tile is clicked
     private void OnTileClicked()
     {
-        Debug.Log($"Pressed {_position}");
+        Debug.Log($"Tile clicked at position: {_gridPosition}");
     }
 }
