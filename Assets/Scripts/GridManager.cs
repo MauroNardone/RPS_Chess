@@ -32,6 +32,7 @@ public class GridManager : MonoBehaviour
     private Tile generateTile(Tile tile, RectTransform parent, int column, int row)
     {
         Tile newTile = Instantiate(tile, parent); //Instantiate a copy of the tile prefab
+        newTile.getGridPosition(column, row);
         RectTransform tilePosition = newTile.GetComponent<RectTransform>(); //Get RectTransform component
         tilePosition.anchoredPosition = new((column * 75) - _offset, (row * 75) - _offset); //Set position in canvas
         return newTile;

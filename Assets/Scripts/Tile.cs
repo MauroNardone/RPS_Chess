@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Tile : MonoBehaviour
 {
     private Button _button;
+    private Vector2 _position;
+    private string _stringPosition;
 
     void Awake()
     {
@@ -26,8 +28,14 @@ public class Tile : MonoBehaviour
 
     }
 
+    public void getGridPosition(int columns, int rows)
+    {
+        _position = new(columns, rows);
+        _stringPosition = new($"{_position}");
+    }
+
     private void OnTileClicked()
     {
-        Debug.Log("Pressed");
+        Debug.Log($"Pressed {_position}");
     }
 }
