@@ -11,23 +11,27 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int _rows;
     [SerializeField] private int _columns;
     [SerializeField] private float _offset = 265;
+    private GameObject _board;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //generateGrid(_tile, _canvas);
+        _board = new GameObject("Board");
+        _board.transform.SetParent(_canvas);
+        RectTransform boardTransform = _board.AddComponent<RectTransform>();
+        boardTransform.anchoredPosition = new(0, 0);
+        boardTransform.localScale = new(1, 1, 1);
         for (int col = 0; col < _columns; col++)
         {
             for (int row = 0; row < _rows; row++)
             {
-                _tiles.Add(generateTile(_tile, _canvas, col, row));
+                _tiles.Add(generateTile(_tile, boardTransform, col, row));
             }
         }
     }
 
-    private Tile generateTile(Tile tile, RectTransform canvas, int column, int row)
+    private Tile generateTile(Tile tile, RectTransform parent, int column, int row)
     {
-        Tile newTile = Instantiate(tile, canvas);
+        Tile newTile = Instantiate(tile, parent);
         RectTransform tilePosition = newTile.GetComponent<RectTransform>();
         tilePosition.anchoredPosition = new((column * 75) - _offset, (row * 75) - _offset);
         return newTile;
