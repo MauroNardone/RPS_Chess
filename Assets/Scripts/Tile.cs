@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Tile : MonoBehaviour
 {
     private Button _button;
-    private GameObject _movementBoard;
 
     void Awake()
     {
@@ -27,14 +26,8 @@ public class Tile : MonoBehaviour
 
     }
 
-    public void getMovingBoard(GameObject movementBoard)
-    {
-        _movementBoard = movementBoard;
-    }
-
     private void OnTileClicked()
     {
         Debug.Log("Pressed");
-        Debug.Log($"The Moving Board is: {_movementBoard}");
     }
 }
